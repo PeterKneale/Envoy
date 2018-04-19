@@ -44,59 +44,49 @@ namespace Envoy
             return response;
         }
 
-        private T Resolve<T>()
+        private T Resolve<T>() where T : class, IHandler
         {
             T handler;
             try
             {
-                Trace.WriteLine($"Attemping to find handler of type {typeof(T).ToGenericName()}");
+                Trace.WriteLine(Text.FindingHandler<T>());
                 handler = _resolver.Resolve<T>();
-                Trace.WriteLine($"Found handler {handler.GetType().ToGenericName()} of type {typeof(T).ToGenericName()}");
+                Trace.WriteLine(Text.FoundHandler<T>(handler));
             }
             catch (Exception ex)
             {
-                throw new EnvoyException(GetHandlerErrorMessage<T>(), ex);
+                throw new EnvoyException(Text.HandlerCreationError<T>(), ex);
             }
             if (handler == null)
             {
-                throw new EnvoyException(GetHandlerMissingMessage<T>());
+                throw new EnvoyException(Text.FoundNoHandler<T>());
             }
 
             return handler;
         }
 
-        private IEnumerable<T> ResolveAll<T>()
+        private IEnumerable<T> ResolveAll<T>() where T : class, IHandler
         {
             IEnumerable<T> handlers;
             try
             {
-                Trace.WriteLine($"Attemping to find handler of type {typeof(T).ToGenericName()}");
+                Trace.WriteLine(Text.FindingHandler<T>());
                 handlers = _resolver.ResolveAll<T>();
                 foreach (var handler in handlers)
                 {
-                    Trace.WriteLine($"Found handler {handler.GetType().ToGenericName()} of type {typeof(T).ToGenericName()}");
+                    Trace.WriteLine(Text.FoundHandler<T>(handler));
                 }
             }
             catch (Exception ex)
             {
-                throw new EnvoyException(GetHandlerErrorMessage<T>(), ex);
+                throw new EnvoyException(Text.HandlerCreationError<T>(), ex);
             }
             if (handlers.Count() == 0)
             {
-                Trace.WriteLine($"No handlers were found for {typeof(T).ToGenericName()}");
+                Trace.WriteLine(Text.FoundNoHandler<T>());
             }
 
             return handlers;
-        }
-
-        private static string GetHandlerErrorMessage<T>()
-        {
-            return $"Handler for {typeof(T).Name} could not be instantiated.";
-        }
-
-        private static string GetHandlerMissingMessage<T>()
-        {
-            return $"Handler for {typeof(T).Name} could not be found.";
         }
     }
 }

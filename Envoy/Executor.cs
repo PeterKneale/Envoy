@@ -41,12 +41,12 @@ namespace Envoy
 
         private void LogBefore(IHandler handler, IMessage message)
         {
-            Trace.WriteLine($"Using {handler.GetType().Name} to handle {message.GetType().Name}");
+            Trace.WriteLine(Text.Handling(handler, message));
         }
 
         private void LogAfter(IHandler handler, IMessage message)
         {
-            Trace.WriteLine($"Used {handler.GetType().Name} to handle {message.GetType().Name}");
+            Trace.WriteLine(Text.Handled(handler, message));
         }
     }
 }

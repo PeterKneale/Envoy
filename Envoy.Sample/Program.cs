@@ -2,6 +2,10 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace Envoy.Sample
 {
@@ -9,7 +13,16 @@ namespace Envoy.Sample
     {
         static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console()
+                .WriteTo.Seq("http://localhost:32776")
+                .CreateLogger();
+
+            Log.Information("Starting");
+    
             ContainerBuilder builder = new ContainerBuilder();
+            
             builder.RegisterEnvoy();
             builder.RegisterEnvoyHandlers(typeof(Program).Assembly);
             
@@ -17,6 +30,9 @@ namespace Envoy.Sample
             container.Resolve<IDispatchCommand>().CommandAsync(new TestCommand());
             container.Resolve<IDispatchEvent>().PublishAsync(new TestEvent());
             container.Resolve<IDispatchRequest>().RequestAsync<TestRequest, TestResponse>(new TestRequest());
+
+            
+            Log.CloseAndFlush();
         }
     }
 
