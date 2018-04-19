@@ -6,6 +6,7 @@ using System;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
+using SerilogTraceListener;
 
 namespace Envoy.Sample
 {
@@ -19,6 +20,9 @@ namespace Envoy.Sample
                 .WriteTo.Seq("http://localhost:32776")
                 .CreateLogger();
 
+            var listener = new SerilogTraceListener.SerilogTraceListener();
+            Trace.Listeners.Add(listener);
+
             Log.Information("Starting");
     
             ContainerBuilder builder = new ContainerBuilder();
@@ -31,7 +35,7 @@ namespace Envoy.Sample
             container.Resolve<IDispatchEvent>().PublishAsync(new TestEvent());
             container.Resolve<IDispatchRequest>().RequestAsync<TestRequest, TestResponse>(new TestRequest());
 
-            
+            Log.Information("Stopping");
             Log.CloseAndFlush();
         }
     }

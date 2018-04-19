@@ -39,14 +39,8 @@ namespace Envoy
             return response;
         }
 
-        private void LogBefore(IHandler handler, IMessage message)
-        {
-            Trace.WriteLine(Text.Handling(handler, message));
-        }
+        private void LogBefore(IHandler handler, IMessage message) => Trace.WriteLine(Text.Handling(handler, message));
 
-        private void LogAfter(IHandler handler, IMessage message)
-        {
-            Trace.WriteLine(Text.Handled(handler, message));
-        }
+        private void LogAfter(IHandler handler, IMessage message) => Trace.WriteLine(Text.Handled(handler, message));
     }
 }
