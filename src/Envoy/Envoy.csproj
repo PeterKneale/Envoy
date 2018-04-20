@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <Authors>Peter Kneale</Authors>
+    <Copyright>Peter Kneale</Copyright>
+    <PackageLicenseUrl>https://github.com/PeterKneale/Envoy/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/PeterKneale/Envoy</PackageProjectUrl>
+    <RepositoryUrl>git@github.com:PeterKneale/Envoy.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>C#, mediator</PackageTags>
+    <Description>With the mediator pattern, communication between objects is encapsulated within a mediator object. Objects no longer communicate directly with each other, but instead communicate through the mediator. This reduces the dependencies between communicating objects, thereby reducing coupling.</Description>
+    <Company />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;LIBLOG_PORTABLE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;LIBLOG_PORTABLE</DefineConstants>
+  </PropertyGroup>
+
+</Project>
