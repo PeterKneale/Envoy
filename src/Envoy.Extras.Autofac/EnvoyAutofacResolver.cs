@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Autofac;
 
-namespace Envoy.Containers.Autofac
+namespace Envoy.Extras.Autofac
 {
     public class EnvoyAutofacResolver : IResolver
     {

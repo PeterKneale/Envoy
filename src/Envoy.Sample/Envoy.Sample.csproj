@@ -6,14 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.7.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
-    <PackageReference Include="SerilogTraceListener" Version="3.0.10043" />
+    <PackageReference Include="Autofac" Version="4.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Envoy.Containers.Autofac\Envoy.Containers.Autofac.csproj" />
+    <ProjectReference Include="..\Envoy.Extras.Autofac\Envoy.Extras.Autofac.csproj" />
+    <ProjectReference Include="..\Envoy\Envoy.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,5 @@
 using Autofac;
-using Envoy.Containers.Autofac;
 using NSubstitute;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

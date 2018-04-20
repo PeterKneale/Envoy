@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace Envoy.Containers.Autofac
+namespace Envoy.Extras.Autofac
 {
     public class EnvoyAutofacModule : Module
     {

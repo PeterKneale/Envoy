@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Envoy.Containers.Autofac;
+using Envoy.Extras.Autofac;
 using System.Linq;
 using System.Reflection;
 

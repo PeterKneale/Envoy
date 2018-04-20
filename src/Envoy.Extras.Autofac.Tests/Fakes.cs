@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Envoy.Containers.Autofac.Tests
+namespace Envoy.Extras.Autofac.Tests
 {
     internal class TestCommand : ICommand
     {

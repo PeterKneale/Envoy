@@ -4,10 +4,14 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>Envoy.Extras.Autofac.Tests</AssemblyName>
+
+    <RootNamespace>Envoy.Extras.Autofac.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.7.0" />
+    <PackageReference Include="Autofac" Version="4.8.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="NSubstitute" Version="3.1.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
@@ -16,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Envoy.Containers.Autofac\Envoy.Containers.Autofac.csproj" />
+    <ProjectReference Include="..\Envoy.Extras.Autofac\Envoy.Extras.Autofac.csproj" />
     <ProjectReference Include="..\Envoy\Envoy.csproj" />
   </ItemGroup>
 

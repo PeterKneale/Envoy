@@ -1,7 +1,7 @@
 using Autofac;
 using Xunit;
 
-namespace Envoy.Containers.Autofac.Tests
+namespace Envoy.Extras.Autofac.Tests
 {
     public class EnvoyAutofacModuleTests
     {
