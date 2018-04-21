@@ -1,3 +1,3 @@
 # Envoy
 
-Read the [QuickStart](doc/QUickStart.md) to get going.
+Read the [QuickStart](doc/QuickStart.md) to get going.
