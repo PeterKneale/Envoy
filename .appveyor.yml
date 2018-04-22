@@ -3,17 +3,20 @@ image: Visual Studio 2017
 branches:
   only:
   - master
-build_script:
-  - cmd: cd src
+before_build:
+  - cmd: dotnet --version
   - cmd: dotnet --info
-  - cmd: dotnet restore
-  - cmd: dotnet build ./Envoy/Envoy.csproj -c Release
-  - cmd: dotnet pack ./Envoy/Envoy.csproj -c Release
+build_script:
+  - cmd: dotnet restore ./src/Envoy/Envoy.csproj --verbosity m
+  - cmd: dotnet publish ./src/Envoy/Envoy.csproj
 test_script:
-  - cmd: dotnet test ./Envoy.Tests/Envoy.Tests.csproj
+  - cmd: dotnet restore ./src/Envoy.Tests/Envoy.Tests.csproj --verbosity m
+  - cmd: dotnet test ./src/Envoy.Tests/Envoy.Tests.csproj
 artifacts:
-  - path: '**\*.nupkg'
-    name: NuGetPackages
+- path: .\src\**\*.nupkg
+  name: NuGet
+- path: .\src\**\*.xml
+  name: xUnit Test Results
 deploy:
   - provider: NuGet
     api_key:
