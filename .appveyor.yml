@@ -7,8 +7,8 @@ build_script:
   - cmd: cd src
   - cmd: dotnet --info
   - cmd: dotnet restore
-  - cmd: dotnet build ./Envoy/Envoy.csproj -c Release --verbose
-  - cmd: dotnet pack ./Envoy/Envoy.csproj -c Release --verbose
+  - cmd: dotnet build ./Envoy/Envoy.csproj -c Release
+  - cmd: dotnet pack ./Envoy/Envoy.csproj -c Release
 test_script:
   - cmd: dotnet test ./Envoy.Tests/Envoy.Tests.csproj
 artifacts:
