@@ -6,6 +6,7 @@ branches:
 init:
   - cmd: cd src
 build_script:
+  - cmd: dotnet --info
   - cmd: dotnet restore
   - cmd: dotnet build ./Envoy/Envoy.csproj -c Release
   - cmd: dotnet pack ./Envoy/Envoy.csproj -c Release
