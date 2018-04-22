@@ -30,7 +30,7 @@ deploy:
     api_key:
       secure: 39TiDru9R2WsPYRl1ng1z5NQbI6A8tw+KfFlOE5KdT/4cTzKPlu8mjIud50s4Xce
     skip_symbols: false
-    artifact: Envoy.nupkg
+    artifact: NuGet
 notifications:
   - provider: Email
     to:
