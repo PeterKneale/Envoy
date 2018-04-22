@@ -1,0 +1,14 @@
+version: '0.1.{build}'
+image: Visual Studio 2017
+branches:
+  only:
+  - master
+init:
+  - cmd: git config --global core.autocrlf true
+build_script:
+  - cmd: dotnet restore ./src/Envoy.csproj
+  - cmd: dotnet publish ./src/Envoy.csproj
+test_script:
+  - cmd: dotnet restore ./src/Envoy.Tests/Envoy.Tests.csproj
+  - cmd: cd src/Envoy.Tests
+  - cmd: dotnet test
