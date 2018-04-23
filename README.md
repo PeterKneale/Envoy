@@ -1,10 +1,10 @@
 # Envoy
 
-![NuGet](https://img.shields.io/nuget/v/Envoy.svg)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/peterkneale/envoy?branch=master&svg=true)](https://ci.appveyor.com/project/peterkneale/envoy)
 
-![NuGet](https://img.shields.io/nuget/dt/Envoy.svg)
+[![NuGet](https://img.shields.io/nuget/dt/envoy.svg)](https://www.nuget.org/packages/envoy) 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/athyvrivdatty914?svg=true)](https://ci.appveyor.com/project/PeterKneale/envoy)
+[![NuGet](https://img.shields.io/nuget/vpre/envoy.svg)](https://www.nuget.org/packages/envoy)
 
 ## Installation
 
@@ -27,10 +27,6 @@ via Package Manager
 via .NET CLI: 
     
 ```dotnet add package Envoy.Extras.Autofac```
-
-via Packet CLI
-
-```paket add Envoy.Extras.Autofac```
 
 ## Using Envoy
 
