@@ -7,10 +7,10 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.0" />
+    <PackageReference Include="Envoy.Extras.Autofac" Version="0.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Envoy.Extras.Autofac\Envoy.Extras.Autofac.csproj" />
     <ProjectReference Include="..\Envoy\Envoy.csproj" />
   </ItemGroup>
 
