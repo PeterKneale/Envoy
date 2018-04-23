@@ -16,7 +16,7 @@ before_build:
   - cmd: dotnet --info
 build_script:
   - cmd: dotnet restore ./src/Envoy/Envoy.csproj --verbosity m
-  - cmd: dotnet publish ./src/Envoy/Envoy.csproj
+  - cmd: dotnet build -c Release ./src/Envoy/Envoy.csproj
 test_script:
   - cmd: dotnet restore ./src/Envoy.Tests/Envoy.Tests.csproj --verbosity m
   - cmd: dotnet test ./src/Envoy.Tests/Envoy.Tests.csproj
