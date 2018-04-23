@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/PeterKneale/Envoy</PackageProjectUrl>
     <RepositoryUrl>git@github.com:PeterKneale/Envoy.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>C#, mediator</PackageTags>
+    <PackageTags>C#, envoy, mediator, pattern</PackageTags>
     <Description>With the mediator pattern, communication between objects is encapsulated within a mediator object. Objects no longer communicate directly with each other, but instead communicate through the mediator. This reduces the dependencies between communicating objects, thereby reducing coupling.</Description>
     <Company />
     <PackageIconUrl>https://raw.githubusercontent.com/PeterKneale/Envoy/master/assets/nuget.org/logo-96.png</PackageIconUrl>

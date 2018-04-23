@@ -9,10 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Envoy.Sample", "Envoy.Sampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Envoy.Tests", "Envoy.Tests\Envoy.Tests.csproj", "{2AB1806E-8782-4761-8BCA-4E8FBAB841D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Envoy.Extras.Autofac", "Envoy.Extras.Autofac\Envoy.Extras.Autofac.csproj", "{04FC0445-3076-486D-ABC6-D9089646F9D0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Envoy.Extras.Autofac.Tests", "Envoy.Extras.Autofac.Tests\Envoy.Extras.Autofac.Tests.csproj", "{4AEB758C-393A-4B81-945C-253112D6173C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,14 +27,6 @@ Global
 		{2AB1806E-8782-4761-8BCA-4E8FBAB841D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB1806E-8782-4761-8BCA-4E8FBAB841D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AB1806E-8782-4761-8BCA-4E8FBAB841D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04FC0445-3076-486D-ABC6-D9089646F9D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04FC0445-3076-486D-ABC6-D9089646F9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04FC0445-3076-486D-ABC6-D9089646F9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04FC0445-3076-486D-ABC6-D9089646F9D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AEB758C-393A-4B81-945C-253112D6173C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AEB758C-393A-4B81-945C-253112D6173C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AEB758C-393A-4B81-945C-253112D6173C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AEB758C-393A-4B81-945C-253112D6173C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
