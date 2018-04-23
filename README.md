@@ -6,7 +6,7 @@
 
 [![NuGet](https://img.shields.io/nuget/vpre/envoy.svg)](https://www.nuget.org/packages/envoy)
 
-## Installation
+## Installing Envoy
 
 via Package Manager
 
@@ -16,9 +16,9 @@ via .NET CLI:
     
 ```dotnet add package Envoy```
 
-## Extras
+## Installing Extras
 
-### Autofac integration
+### Autofac container support: [Envoy.Extras.Autofac](/PeterKneale/Envoy.Extras.Autofac)
 
 via Package Manager
 
