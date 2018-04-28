@@ -1,7 +1,4 @@
 ﻿using Autofac;
-using System.Threading;
-using System.Threading.Tasks;
-using Envoy;
 
 namespace Envoy.Sample
 {
@@ -11,52 +8,36 @@ namespace Envoy.Sample
         {
             ContainerBuilder builder = new ContainerBuilder();
 
-            builder.RegisterEnvoy();
-            builder.RegisterEnvoyHandlers(typeof(Program).Assembly);
+            // Register your application
+            builder.RegisterType<App>()
+                .As<IApp>();
+
+            // register your handlers
+            builder.RegisterType<TestCommandHandler>().As<IHandleCommand<TestCommand>>();
+            builder.RegisterType<TestRequestHandler>().As<IHandleRequest<TestRequest, TestResponse>>();
+            builder.RegisterType<TestEvent1Handler>().As<IHandleEvent<TestEvent>>();
+            builder.RegisterType<TestEvent2Handler>().As<IHandleEvent<TestEvent>>();
+
+            // Register the required infrastructure
+            builder.RegisterType<Dispatcher>()
+                .As<IDispatchCommands>()
+                .As<IDispatchEvents>()
+                .As<IDispatchRequests>();
+            builder.RegisterType<Executor>()
+                .As<IExecuteCommands>()
+                .As<IExecuteEvents>()
+                .As<IExecuteRequests>();
+            builder.RegisterType<TraceLogger>()
+                .As<ILogger>();
+            
+            // Register a container adaptor of choice
+            builder.RegisterType<AutofacAdaptor>()
+                .As<IResolver>();
             
             var container = builder.Build();
-            container.Resolve<IDispatchCommand>().CommandAsync(new TestCommand());
-            container.Resolve<IDispatchEvent>().PublishAsync(new TestEvent());
-            container.Resolve<IDispatchRequest>().RequestAsync<TestRequest, TestResponse>(new TestRequest());
-        }
-    }
 
-    public class TestCommand : ICommand { }
-
-    public class TestRequest : IRequest<TestResponse> { }
-    public class TestResponse { }
-
-    public class TestEvent : IEvent { }
-
-    public class TestCommandHandler : IHandleCommand<TestCommand>
-    {
-        public Task HandleAsync(TestCommand command, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    public class TestRequestHandler : IHandleRequest<TestRequest, TestResponse>
-    {
-        public Task<TestResponse> HandleAsync(IRequest<TestResponse> request, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(new TestResponse());
-        }
-    }
-
-    public class TestEvent1Handler : IHandleEvent<TestEvent>
-    {
-        public Task HandleAsync(TestEvent evnt, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    public class TestEvent2Handler : IHandleEvent<TestEvent>
-    {
-        public Task HandleAsync(TestEvent evnt, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
+            // start your application
+            container.Resolve<IApp>().Start();
         }
     }
 }

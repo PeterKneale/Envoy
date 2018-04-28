@@ -1,25 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Envoy
 {
-    public class Dispatcher : IDispatchCommand, IDispatchRequest, IDispatchEvent
+    public class Dispatcher : IDispatchCommands, IDispatchRequests, IDispatchEvents
     {
         private readonly IResolver _resolver;
         private readonly IExecuteCommands _commands;
         private readonly IExecuteEvents _events;
         private readonly IExecuteRequests _requests;
+        private readonly ILogger _logger;
 
-        public Dispatcher(IResolver resolver, IExecuteCommands commands, IExecuteEvents events, IExecuteRequests requests)
+        public Dispatcher(IResolver resolver, IExecuteCommands commands, IExecuteEvents events, IExecuteRequests requests, ILogger logger = null)
         {
+            Guard.AgainstNull(resolver, nameof(resolver));
+            Guard.AgainstNull(commands, nameof(commands));
+            Guard.AgainstNull(events, nameof(events));
+            Guard.AgainstNull(requests, nameof(requests));
+
             _resolver = resolver;
             _commands = commands;
             _events = events;
             _requests = requests;
+            _logger = logger ?? new NullLogger();
         }
 
         public async Task CommandAsync<T>(T command, CancellationToken cancellationToken = default(CancellationToken)) where T : class, ICommand
@@ -40,7 +46,7 @@ namespace Envoy
         {
             Guard.AgainstNull(request, nameof(request));
             var handler = Resolve<IHandleRequest<TRequest, TResponse>>();
-            var response = await _requests.Execute(handler, request, cancellationToken);
+            var response = await _requests.ExecuteAsync(handler, request, cancellationToken);
             return response;
         }
 
@@ -49,17 +55,21 @@ namespace Envoy
             T handler;
             try
             {
-                Trace.WriteLine(Text.FindingHandler<T>());
+                _logger.LogDebug(Text.FindingHandler<T>());
                 handler = _resolver.Resolve<T>();
-                Trace.WriteLine(Text.FoundHandler<T>(handler));
+                _logger.LogInfo(Text.FoundHandler<T>(handler));
             }
             catch (Exception ex)
             {
-                throw new EnvoyException(Text.HandlerCreationError<T>(), ex);
+                var msg = Text.HandlerCreationError<T>();
+                _logger.LogException(msg, ex);
+                throw new Exception(msg, ex);
             }
             if (handler == null)
             {
-                throw new EnvoyException(Text.FoundNoHandler<T>());
+                var msg = Text.FoundNoHandler<T>();
+                _logger.LogError(msg);
+                throw new Exception(msg);
             }
 
             return handler;
@@ -70,20 +80,22 @@ namespace Envoy
             IEnumerable<T> handlers;
             try
             {
-                Trace.WriteLine(Text.FindingHandler<T>());
+                _logger.LogDebug(Text.FindingHandler<T>());
                 handlers = _resolver.ResolveAll<T>();
                 foreach (var handler in handlers)
                 {
-                    Trace.WriteLine(Text.FoundHandler<T>(handler));
+                    _logger.LogInfo(Text.FoundHandler<T>(handler));
                 }
             }
             catch (Exception ex)
             {
-                throw new EnvoyException(Text.HandlerCreationError<T>(), ex);
+                var msg = Text.HandlerCreationError<T>();
+                _logger.LogError(msg);
+                throw new Exception(msg, ex);
             }
             if (handlers.Count() == 0)
             {
-                Trace.WriteLine(Text.FoundNoHandler<T>());
+                _logger.LogWarn(Text.FoundNoHandler<T>());
             }
 
             return handlers;

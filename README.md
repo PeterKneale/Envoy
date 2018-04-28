@@ -14,7 +14,13 @@ via .NET CLI:
     
 ```dotnet add package Envoy```
 
-## Installing Extras
+## Using Envoy
+
+- Read the [QuickStart](doc/QuickStart.md) to understand how to use the library.
+
+- Execute the [Sample Application](src/Envoy.Sample) to see it in action.
+
+## Optional Extras
 
 ### Autofac container support: [Envoy.Extras.Autofac](/PeterKneale/Envoy.Extras.Autofac)
 
@@ -25,7 +31,3 @@ via Package Manager
 via .NET CLI: 
     
 ```dotnet add package Envoy.Extras.Autofac```
-
-## Using Envoy
-
-Read the [QuickStart](doc/QuickStart.md) to get going.
