@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Envoy
+namespace Envoy.Internals
 {
     internal static class Guard
     {

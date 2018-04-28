@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Envoy
+namespace Envoy.Internals
 {
     internal static class Text
     {
