@@ -22,7 +22,7 @@ via .NET CLI:
 
 ## Optional Extras
 
-### Autofac container support: [Envoy.Extras.Autofac](/PeterKneale/Envoy.Extras.Autofac)
+### Autofac container support: [Envoy.Extras.Autofac](https://github.com/PeterKneale/Envoy.Extras.Autofac)
 
 via Package Manager
 
