@@ -12,7 +12,7 @@ namespace Envoy
             CancellationToken cancellationToken = default(CancellationToken)) 
             where T : class, ICommand
         {
-            await handler.HandleAsync(command, cancellationToken);
+            await handler.Handle(command, cancellationToken);
         }
 
         public async Task ExecuteAsync<T>(

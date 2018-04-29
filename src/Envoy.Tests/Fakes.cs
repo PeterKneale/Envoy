@@ -23,7 +23,7 @@ namespace Envoy.Tests
 
     public class TestCommandHandler : IHandleCommand<TestCommand>
     {
-        public Task HandleAsync(TestCommand command, CancellationToken cancellationToken)
+        public Task Handle(TestCommand command, CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
         }

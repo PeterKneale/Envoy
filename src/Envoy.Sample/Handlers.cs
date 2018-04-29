@@ -6,7 +6,7 @@ namespace Envoy.Sample
 {
     public class TestCommandHandler : IHandleCommand<TestCommand>
     {
-        public Task HandleAsync(TestCommand command, CancellationToken cancellationToken)
+        public Task Handle(TestCommand command, CancellationToken cancellationToken)
         {
             Console.WriteLine("handling the command");
             return Task.FromResult(0);
@@ -15,7 +15,7 @@ namespace Envoy.Sample
     
     public class TestRequestHandler : IHandleRequest<TestRequest, TestResponse>
     {
-        public Task<TestResponse> HandleAsync(IRequest<TestResponse> request, CancellationToken cancellationToken)
+        public Task<TestResponse> HandleAsync(TestRequest request, CancellationToken cancellationToken)
         {
             Console.WriteLine("handling the request");
             return Task.FromResult(new TestResponse());

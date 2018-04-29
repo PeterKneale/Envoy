@@ -30,12 +30,12 @@ namespace Envoy
     }
     public interface IHandleRequest<in TRequest, TResponse> : IHandler where TRequest : class, IRequest<TResponse>
     {
-        Task<TResponse> HandleAsync(IRequest<TResponse> request, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken = default(CancellationToken));
     }
 
     public interface IHandleCommand<in ICommand> : IHandler where ICommand : class
     {
-        Task HandleAsync(ICommand command, CancellationToken cancellationToken = default(CancellationToken));
+        Task Handle(ICommand command, CancellationToken cancellationToken = default(CancellationToken));
     }
 
     public interface IHandleEvent<in IEvent> : IHandler where IEvent : class
