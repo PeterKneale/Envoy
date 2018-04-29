@@ -31,6 +31,8 @@ deploy:
       secure: 39TiDru9R2WsPYRl1ng1z5NQbI6A8tw+KfFlOE5KdT/4cTzKPlu8mjIud50s4Xce
     skip_symbols: false
     artifact: NuGet
+    on:
+      appveyor_repo_tag: true
 notifications:
   - provider: Email
     to:
