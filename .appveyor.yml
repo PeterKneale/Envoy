@@ -1,5 +1,12 @@
-version: '0.1.{build}'
 image: Visual Studio 2017
+
+init:
+- ps: >-
+    # If the branch has been tagged then use that as the version number
+    if ($env:APPVEYOR_REPO_TAG -eq "true")
+    {
+        Update-AppveyorBuild -Version ($env:APPVEYOR_REPO_TAG_NAME)
+    }
 
 dotnet_csproj:
   patch: true
