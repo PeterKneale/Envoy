@@ -39,7 +39,7 @@ namespace Envoy.Tests
 
     public class TestRequestHandler : IHandleRequest<TestRequest, TestResponse>
     {
-        public Task<TestResponse> HandleAsync(IRequest<TestResponse> request, CancellationToken cancellationToken)
+        public Task<TestResponse> HandleAsync(TestRequest request, CancellationToken cancellationToken)
         {
             return Task.FromResult(new TestResponse());
         }
