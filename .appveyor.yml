@@ -23,8 +23,6 @@ test_script:
 artifacts:
 - path: .\src\**\*.nupkg
   name: NuGet
-- path: .\src\**\*.xml
-  name: xUnit Test Results
 deploy:
   - provider: NuGet
     api_key:
