@@ -44,11 +44,3 @@ deploy:
     artifact: NuGet
     on:
       appveyor_repo_tag: true
-
-notifications:
-  - provider: Email
-    to:
-      - peterkneale+envoy@gmail.com
-    subject: 'Envoy: Build {{status}}'                 
-    message: "{{message}}, {{commitId}}, ..."
-    on_build_status_changed: true
