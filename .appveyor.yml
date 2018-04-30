@@ -1,6 +1,6 @@
 image: Visual Studio 2017
 
-version: '1.2.2'
+version: '1.2.3'
 
 init:
   - ps: $env:version = $env:APPVEYOR_BUILD_VERSION
