@@ -1,9 +1,13 @@
 image: Visual Studio 2017
 
+# if the build is on master - 1.2.0
+# if the build is on a branch - 1.2.0-branch+sha
+
 version: '1.2.0'
 
 init:
-  - ps: $env:ver = if ($env:APPVEYOR_REPO_TAG -eq $True) { "$env:APPVEYOR_BUILD_VERSION" } else { "$env:APPVEYOR_BUILD_VERSION-$env:APPVEYOR_BUILD_NUMBER-$env:APPVEYOR_REPO_BRANCH" }
+  - ps: $env:project="Envoy"
+  - ps: $env:ver = if ($env:APPVEYOR_REPO_BRANCH -eq "master") { "$env:APPVEYOR_BUILD_VERSION" } else { "$env:APPVEYOR_BUILD_VERSION-$env:APPVEYOR_REPO_BRANCH+$env:APPVEYOR_REPO_COMMIT" }
   - ps: Update-AppveyorBuild -Version $env:ver
   
 dotnet_csproj:
@@ -20,12 +24,12 @@ before_build:
   - cmd: dotnet --info
 
 build_script:
-  - cmd: dotnet restore ./src/Envoy/Envoy.csproj --verbosity m
-  - cmd: dotnet build -c Release ./src/Envoy/Envoy.csproj
+  - cmd: dotnet restore ./src/{project}/{project}.csproj --verbosity m
+  - cmd: dotnet build -c Release ./src/{project}/{project}.csproj
 
 test_script:
-  - cmd: dotnet restore ./src/Envoy.Tests/Envoy.Tests.csproj --verbosity m
-  - cmd: dotnet test ./src/Envoy.Tests/Envoy.Tests.csproj
+  - cmd: dotnet restore ./src/{project}.Tests/{project}.Tests.csproj --verbosity m
+  - cmd: dotnet test ./src/{project}.Tests/{project}.Tests.csproj
 
 artifacts:
 - path: .\src\**\*.nupkg
