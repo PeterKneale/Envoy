@@ -3,7 +3,7 @@ image: Visual Studio 2017
 # if the build is on master - 1.2.0
 # if the build is on a branch - 1.2.0-branch+sha
 
-version: '1.2.0'
+version: '1.2.1'
 
 init:
   - ps: $env:project="Envoy"
