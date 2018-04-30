@@ -1,6 +1,6 @@
 image: Visual Studio 2017
-# git tag 1.2.3 to release to nuget
-version: '1.2.3'
+# this is the next version to be released, not the prior version.
+version: '1.2.4'
 
 init:
   - ps: $env:version = $env:APPVEYOR_BUILD_VERSION
