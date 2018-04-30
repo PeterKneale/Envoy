@@ -1,6 +1,6 @@
 image: Visual Studio 2017
 
-version: '1.1.0'
+version: '1.2.0'
 
 init:
   - ps: $env:ver = if ($env:APPVEYOR_REPO_TAG -eq $True) { "$env:APPVEYOR_BUILD_VERSION-$env:APPVEYOR_BUILD_NUMBER" } else { "$env:APPVEYOR_BUILD_VERSION-$env:APPVEYOR_BUILD_NUMBER-$env:APPVEYOR_REPO_BRANCH" }
