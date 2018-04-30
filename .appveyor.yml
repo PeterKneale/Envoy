@@ -3,7 +3,7 @@ image: Visual Studio 2017
 version: '1.2.1'
 
 init:
-  - ps: $env:sha = $env:APPVEYOR_REPO_COMMIT.Substring(0, 10)
+  - ps: $env:sha = $env:APPVEYOR_REPO_COMMIT.Substring(0, 7)
   - ps: $env:branch = $env:APPVEYOR_REPO_BRANCH
   - ps: $env:version = $env:APPVEYOR_BUILD_VERSION
     # if the build is on master - 1.2.0
