@@ -20,8 +20,6 @@ namespace Envoy.Sample.WebAPI
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -29,9 +27,9 @@ namespace Envoy.Sample.WebAPI
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<Dispatcher>()
-                      .As<IDispatchCommands>()
-                      .As<IDispatchEvents>()
-                      .As<IDispatchRequests>();
+                .As<IDispatchCommands>()
+                .As<IDispatchEvents>()
+                .As<IDispatchRequests>();
 
             builder.RegisterType<Executor>()
                 .As<IExecuteCommands>()
