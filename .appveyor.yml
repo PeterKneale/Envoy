@@ -1,14 +1,16 @@
 image: Visual Studio 2017
 
-# if the build is on master - 1.2.0
-# if the build is on a branch - 1.2.0-branch+sha
-
 version: '1.2.1'
 
 init:
   - ps: $env:project="Envoy"
-  - ps: $env:ver = if ($env:APPVEYOR_REPO_BRANCH -eq "master") { "$env:APPVEYOR_BUILD_VERSION" } else { "$env:APPVEYOR_BUILD_VERSION-$env:APPVEYOR_REPO_BRANCH+$env:APPVEYOR_REPO_COMMIT" }
-  - ps: Update-AppveyorBuild -Version $env:ver
+  - ps: $env:sha = $env:APPVEYOR_REPO_COMMIT.Substring(0, 10)
+  - ps: $env:branch = $env:APPVEYOR_REPO_BRANCH
+  - ps: $env:version = $env:APPVEYOR_BUILD_VERSION
+    # if the build is on master - 1.2.0
+    # if the build is on a branch - 1.2.0-branch+sha
+  - ps: $env:semver = if ($env:branch -eq "master") { "$env:version" } else { "$env:version-$env:branch+$env:sha" }
+  - ps: Update-AppveyorBuild -Version $env:semver
   
 dotnet_csproj:
   patch: true
@@ -17,7 +19,7 @@ dotnet_csproj:
   package_version: '{version}'
   assembly_version: '{version}'
   file_version: '{version}'
-  informational_version: '{version}'
+  informational_version: '{semver}'
 
 before_build:
   - cmd: dotnet --version
