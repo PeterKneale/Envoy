@@ -5,14 +5,13 @@ version: '1.2.2'
 init:
   - ps: $env:version = $env:APPVEYOR_BUILD_VERSION
   - ps: $env:branch = $env:APPVEYOR_REPO_BRANCH
-  - ps: $env:build = $env:APPVEYOR_BUILD_NUMBER
   - ps: $env:sha = $env:APPVEYOR_REPO_COMMIT.Substring(0, 7)
   - ps: $env:tagged = $env:APPVEYOR_REPO_TAG
   - ps: >-
       if ($env:branch -ne "master" -Or $env:tagged -ne "true")
       {
-        # version+branch.build.sha
-        $env:info = "$env:version+$env:branch.$env:build.$env:sha"
+        # version-branch-sha
+        $env:info = "$env:version-$env:branch-$env:sha"
         Update-AppveyorBuild -Version $env:info
       }
 
