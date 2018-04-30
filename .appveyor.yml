@@ -7,9 +7,9 @@ init:
   - ps: $env:branch = $env:APPVEYOR_REPO_BRANCH
   - ps: $env:build = $env:APPVEYOR_BUILD_NUMBER
   - ps: $env:sha = $env:APPVEYOR_REPO_COMMIT.Substring(0, 7)
-    # if the build is on master - 1.2.0
-    # if the build is on a branch - 1.2.0-branch+3shaABABABC
-  - ps: $env:semver = if ($env:branch -eq "master") { "$env:version" } else { "$env:version-$env:branch.$env:build.$env:sha" }
+    # if the build is on master - version
+    # if the build is on a branch - version+branch.build.sha
+  - ps: $env:semver = if ($env:branch -eq "master") { "$env:version" } else { "$env:version+$env:branch.$env:build.$env:sha" }
   - ps: Update-AppveyorBuild -Version $env:semver
   
 dotnet_csproj:
